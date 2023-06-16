@@ -11,8 +11,7 @@ bootstrapApplication(AppComponent, {
 		provideHttpClient(),
 		provideAnimations(),
 		provideRouter([], withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
-		importProvidersFrom([
-		]),
+		importProvidersFrom([]),
 		BrowserModule,
 	]
 }).catch(e => console.error(e));
