@@ -1,7 +1,18 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { importProvidersFrom } from '@angular/core';
+import { AppComponent } from './app/app.component';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import { AppModule } from './app/app.module';
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+	providers: [
+		provideHttpClient(),
+		provideAnimations(),
+		provideRouter([], withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
+		importProvidersFrom([
+		]),
+		BrowserModule,
+	]
+}).catch(e => console.error(e));
