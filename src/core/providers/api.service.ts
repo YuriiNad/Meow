@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -19,10 +19,11 @@ export class ApiService {
 	}
 
 	private request<T>(method: string, path: string, options: RequestOptions): Observable<T> {
-		const { handleError, ...httpOptions } = options;
+		const { handleError, headers, ...httpOptions } = options;
 		const url = this.baseUrl + path;
+		const httpHeaders = { ...this.apiKeyHeader, ...headers }
 
-		return this.http.request(method, url, { ...httpOptions })
+		return this.http.request(method, url, { ...httpOptions, headers: httpHeaders })
 			.pipe(
 				catchError(error => this.errorHandler(error, handleError)),
 			)
@@ -39,5 +40,13 @@ export class ApiService {
 
 	private get baseUrl(): string {
 		return this.environment.get('apiUrl');
+	}
+
+	private get apiKeyHeader(): HttpHeaders {
+		const apiKey = this.environment.get('apiKey');
+		const apiKeyHeader = new HttpHeaders();
+		apiKeyHeader.set('x-api-key', apiKey);
+
+		return apiKeyHeader;
 	}
 }

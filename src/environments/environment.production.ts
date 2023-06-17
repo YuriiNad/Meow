@@ -1,6 +1,6 @@
-import { IEnvironment } from "./environment";
+import { IEnvironment, defaultEnv } from "./environment.default";
 
 export const environment: IEnvironment = {
+	...defaultEnv,
 	production: true,
-	apiUrl: '' //TODO: API for BE;
 };

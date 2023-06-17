@@ -4,13 +4,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { PROVIDERS } from './core/global/tokens';
+import { ROOT_ROUTES } from './core/routing';
 
 
 bootstrapApplication(AppComponent, {
 	providers: [
 		provideHttpClient(),
 		provideAnimations(),
-		provideRouter([], withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
+		provideRouter([...ROOT_ROUTES], withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
 		BrowserModule,
 		...PROVIDERS,
 	]
