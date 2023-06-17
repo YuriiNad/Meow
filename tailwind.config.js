@@ -16,11 +16,6 @@ module.exports = {
 		screens: {
 		},
 		extend: {
-			fontSize: {
-
-			},
-			spacing: {
-			}
 		},
 		fontFamily: {
 		}

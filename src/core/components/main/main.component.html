@@ -1,0 +1,27 @@
+
+<div class="h-screen flex flex-col">
+	<app-toolbar 
+		(onOpen)="nav.toggle()"
+		[showMenu]="isMobile()" 
+		title="Meow"
+	/>
+
+	<mat-sidenav-container class="flex-1 overflow-hidden border border-green">
+
+  	<mat-sidenav
+			#nav
+			role="navigation"
+			[opened]="!isMobile()"
+			[disableClose]="!isMobile()"
+			[mode]="mode()"
+		>
+			<p>some data here</p>
+  	</mat-sidenav>
+
+  	<mat-sidenav-content class="p-2 overflow-x-hidden">
+			<!-- <router-outlet></router-outlet> -->
+			<div>SOME CONTENT HERE....</div>
+  	</mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

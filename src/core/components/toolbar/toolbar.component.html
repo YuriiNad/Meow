@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+
+  <button
+		*ngIf="showMenu" 
+		mat-icon-button 
+		aria-label="Menu icon"
+		(click)="onOpen.emit()"
+	>
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span class="ml-2">{{title}}</span>
+  <span class="spacer"></span>
+
+  <button mat-icon-button aria-label="Heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+	
+</mat-toolbar>
