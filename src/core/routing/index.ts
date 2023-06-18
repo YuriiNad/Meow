@@ -12,7 +12,7 @@ export const ROOT_ROUTES: Routes = [
 	},
 	{
 		path: RootPath.HOME,
-		loadComponent: () => import('../../pages/home/home.component'),
+		loadComponent: () => import('../../modules/home/home.component'),
 	},
 	{
 		path: '**',
