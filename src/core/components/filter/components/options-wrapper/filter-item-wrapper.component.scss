@@ -1,0 +1,5 @@
+:host {
+	.mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+		@apply flex-[0] basis-auto;
+	}
+}

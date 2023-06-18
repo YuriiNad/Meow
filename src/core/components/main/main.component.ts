@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgFor, NgIf } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { ScreenService } from 'src/core/providers/screen.service';
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
 	selector: 'app-main',
@@ -20,6 +21,7 @@ import { ScreenService } from 'src/core/providers/screen.service';
 		MatSidenavModule,
 		NgIf, NgFor,
 		MatListModule,
+		FilterComponent
 	],
 	standalone: true,
 })

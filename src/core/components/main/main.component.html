@@ -11,12 +11,11 @@
   	<mat-sidenav
 			#nav
 			role="navigation"
-			class="p-2"
 			[opened]="!isMobile()"
 			[disableClose]="!isMobile()"
 			[mode]="mode()"
 		>
-			<p>some data here</p>
+			<app-filter/>
   	</mat-sidenav>
 
   	<mat-sidenav-content class="p-2 overflow-x-hidden">

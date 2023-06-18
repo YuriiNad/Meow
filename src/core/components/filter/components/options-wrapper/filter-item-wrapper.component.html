@@ -1,0 +1,14 @@
+<mat-accordion>
+	<mat-expansion-panel 
+		[expanded]="isOpen"
+		(opened)="isOpen = true"
+		(closed)="isOpen = false"
+	>
+		<mat-expansion-panel-header class="my-2">
+			<mat-panel-title class="text-gray-light"> {{title}} </mat-panel-title>
+			<mat-panel-description class="text-gray-light font-normal"> ({{quantity}}) </mat-panel-description>
+		</mat-expansion-panel-header>
+		<ng-content></ng-content>
+	</mat-expansion-panel>
+
+</mat-accordion>
