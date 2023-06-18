@@ -17,13 +17,11 @@ export class ApiService {
 	public get<T>(path: string, options: RequestOptions = {}): Observable<T> {
 		return this.request<T>('get', path, options);
 	}
-
 	private request<T>(method: string, path: string, options: RequestOptions): Observable<T> {
 		const { handleError, headers, ...httpOptions } = options;
 		const url = this.baseUrl + path;
-		const httpHeaders = { ...this.apiKeyHeader, ...headers }
 
-		return this.http.request(method, url, { ...httpOptions, headers: httpHeaders })
+		return this.http.request(method, url, { ...httpOptions })
 			.pipe(
 				catchError(error => this.errorHandler(error, handleError)),
 			)
@@ -42,11 +40,4 @@ export class ApiService {
 		return this.environment.get('apiUrl');
 	}
 
-	private get apiKeyHeader(): HttpHeaders {
-		const apiKey = this.environment.get('apiKey');
-		const apiKeyHeader = new HttpHeaders();
-		apiKeyHeader.set('x-api-key', apiKey);
-
-		return apiKeyHeader;
-	}
 }

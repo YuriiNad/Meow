@@ -8,6 +8,7 @@ const colors = {
 	},
 	gray: {
 		DEFAULT: '#6D6E87',
+		light: '#A6A5A5'
 	},
 	black: {
 		full: '#000',

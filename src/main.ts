@@ -1,18 +1,26 @@
 import { AppComponent } from './app/app.component';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { PROVIDERS } from './core/global/tokens';
 import { ROOT_ROUTES } from './core/routing';
+import { HeaderInterceptor } from './core/interceptors/header.interceptor';
+import { Provider } from '@angular/core';
 
+const INTERCEPTORS: Provider[] = [
+	{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
+]
 
 bootstrapApplication(AppComponent, {
 	providers: [
-		provideHttpClient(),
+		provideHttpClient(
+			withInterceptorsFromDi(),
+		),
 		provideAnimations(),
 		provideRouter([...ROOT_ROUTES], withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
 		BrowserModule,
 		...PROVIDERS,
+		...INTERCEPTORS,
 	]
 }).catch(e => console.error(e));

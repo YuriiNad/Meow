@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { ENVIRONMENT } from '../global/tokens';
-import { IEnvironment } from 'src/environments/environment';
+import { IEnvironment } from 'src/environments/environment.default';
 
 @Injectable({
 	providedIn: 'root'
