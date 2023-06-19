@@ -9,4 +9,13 @@
 			(onSelect)="testEmition()"
 		/>
 	</app-filter-item-wrapper>
+
+	<app-filter-item-wrapper 
+		[quantity]="breeds().length"
+		title="Breed"
+	>
+		<app-amount-results></app-amount-results>
+	</app-filter-item-wrapper>
+
+
 </div>

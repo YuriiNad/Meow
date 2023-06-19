@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgFor, NgIf } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { ScreenService } from 'src/core/providers/screen.service';
-import { FilterComponent } from '../filter/filter.component';
+import { FilterComponent } from 'src/modules/home/components/filter/filter.component';
 
 @Component({
 	selector: 'app-main',

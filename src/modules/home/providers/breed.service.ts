@@ -1,8 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { IBreedOption } from 'src/core/components/filter/filter.component';
 import { IBreedInfo } from 'src/core/models/cat';
 import { ApiService } from 'src/core/providers/api.service';
+import { IBreedOption } from '../components/filter/filter.component';
 
 @Injectable({
 	providedIn: 'root'
