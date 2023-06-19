@@ -1,21 +1,20 @@
-<div>
+<div class="w-full">
 	<app-filter-item-wrapper 
 		[quantity]="breeds().length"
 		title="Breed"
 	>
 		<app-breed 
-			[initValue]="'Toyger'"
 			[options]="breeds()"
-			(onSelect)="testEmition()"
+			(onSelect)="breedEmmition($event)"
 		/>
 	</app-filter-item-wrapper>
 
 	<app-filter-item-wrapper 
-		[quantity]="breeds().length"
-		title="Breed"
+		title="Show by"
 	>
-		<app-amount-results></app-amount-results>
+		<app-amount-results 
+			[options]="amountResultsOptions"
+			(onSelect)="amountEmmition($event)"
+		/>
 	</app-filter-item-wrapper>
-
-
 </div>

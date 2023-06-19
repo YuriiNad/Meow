@@ -1,0 +1,14 @@
+<mat-radio-group
+	(change)="onSelect.emit($event.value)"
+	[value]="initValue"
+	class="flex flex-col"
+	aria-label="Select an option"
+>
+	<ng-container *ngIf="options.length">
+
+  	<mat-radio-button *ngFor="let option of options" 
+			[value]="option.value"
+		> {{option.title}} </mat-radio-button>
+
+	</ng-container>
+</mat-radio-group>

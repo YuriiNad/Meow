@@ -1,9 +1,9 @@
-<mat-form-field appearance="outline">
+<mat-form-field class="w-full">
   <mat-label>Choose breed</mat-label>
 
   <mat-select
 		[formControl]="breed"
-		(selectionChange)="onSelect.emit(breed.value)"
+		(selectionChange)="onSelect.emit($event.value)"
 	>
 		<ng-container *ngIf="options.length">
 			

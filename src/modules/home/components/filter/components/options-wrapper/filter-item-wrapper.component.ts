@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -5,13 +6,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 	selector: 'app-filter-item-wrapper',
 	templateUrl: './filter-item-wrapper.component.html',
 	styleUrls: ['./filter-item-wrapper.component.scss'],
-
-	imports: [MatExpansionModule],
+	imports: [MatExpansionModule, NgIf],
 	standalone: true,
 })
 export class FilterItemWrapperComponent {
 	@Input({ required: true }) title!: string;
-	@Input({ required: true }) quantity!: number;
+	@Input() quantity!: number;
 
 	public isOpen = true;
 }

@@ -7,6 +7,7 @@ import { PROVIDERS } from './core/global/tokens';
 import { ROOT_ROUTES } from './core/routing';
 import { HeaderInterceptor } from './core/interceptors/header.interceptor';
 import { Provider } from '@angular/core';
+import { MATERIAL_COMPONENTS_CONFIGS } from './core/providers/material-configs.service';
 
 const INTERCEPTORS: Provider[] = [
 	{ provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true }
@@ -22,5 +23,6 @@ bootstrapApplication(AppComponent, {
 		BrowserModule,
 		...PROVIDERS,
 		...INTERCEPTORS,
+		...MATERIAL_COMPONENTS_CONFIGS,
 	]
 }).catch(e => console.error(e));
