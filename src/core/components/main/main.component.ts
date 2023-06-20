@@ -21,7 +21,7 @@ import { FilterComponent } from 'src/modules/home/components/filter/filter.compo
 		MatSidenavModule,
 		NgIf, NgFor,
 		MatListModule,
-		FilterComponent
+		FilterComponent,
 	],
 	standalone: true,
 })

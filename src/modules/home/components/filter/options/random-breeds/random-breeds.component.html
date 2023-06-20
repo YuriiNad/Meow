@@ -1,0 +1,7 @@
+<mat-checkbox
+	color="primary"
+	[checked]="randomBreeds.valid"
+	class="{{styleClass}}"
+	[formControl]="randomBreeds"
+	(change)="onSelect.emit($event.checked)"
+>Random breeds</mat-checkbox>

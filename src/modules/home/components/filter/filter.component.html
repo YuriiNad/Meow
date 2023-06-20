@@ -7,6 +7,9 @@
 			[options]="breeds()"
 			(onSelect)="breedEmmition($event)"
 		/>
+
+		<app-random-breeds (onSelect)="randomBreedsEmmition($event)"/>
+
 	</app-filter-item-wrapper>
 
 	<app-filter-item-wrapper 
