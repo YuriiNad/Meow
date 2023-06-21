@@ -12,7 +12,9 @@
 		
 		</mat-expansion-panel-header>
 
-		<ng-content></ng-content>
+		<div class="gap-2 flex flex-col {{styleClass}}">
+			<ng-content></ng-content>
+		</div>
 	</mat-expansion-panel>
 
 </mat-accordion>

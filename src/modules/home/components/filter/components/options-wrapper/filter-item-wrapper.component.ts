@@ -11,6 +11,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 export class FilterItemWrapperComponent {
 	@Input({ required: true }) title!: string;
+	@Input() styleClass = '';
 	@Input() quantity!: number;
 
 	public isOpen = true;
