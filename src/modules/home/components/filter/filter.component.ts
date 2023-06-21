@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BreedService } from 'src/modules/home/providers/breed.service';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BreedComponent } from './options/breed/breed.component';
 import { FilterItemWrapperComponent } from './components/options-wrapper/filter-item-wrapper.component';
@@ -16,7 +16,7 @@ import { RandomBreedsComponent } from './options/random-breeds/random-breeds.com
 	selector: 'app-filter',
 	templateUrl: './filter.component.html',
 	styles: [':host {@apply w-full}'],
-	imports: [BreedComponent, AsyncPipe, RandomBreedsComponent, MatCheckboxModule, FilterItemWrapperComponent, AmountResultsComponent, MatExpansionModule],
+	imports: [BreedComponent, NgIf, AsyncPipe, RandomBreedsComponent, MatCheckboxModule, FilterItemWrapperComponent, AmountResultsComponent, MatExpansionModule],
 	standalone: true,
 })
 export class FilterComponent {
@@ -24,23 +24,23 @@ export class FilterComponent {
 	private readonly breedService = inject(BreedService);
 
 	public amountResultsOptions: IBasicFilterItemOptions<number>[] = AMOUNT_RESULT_OPTIONS;
-	public breeds = toSignal(this.breedService.getAll(), { initialValue: [] });
+	public breeds$ = this.breedService.getAll()
 
 	breedEmmition(breedId: string) {
-		this.filterService.breed.set(breedId)
+		this.filterService.setBreed(breedId)
 		console.log('BREED: ', breedId)
 	}
 
 	amountEmmition(itemsAmount: number | string) {
 		if (typeof itemsAmount === 'number') {
-			this.filterService.amountResults.set(itemsAmount)
+			this.filterService.setAmountResults(itemsAmount)
 		}
 
 		console.log('AMOUNT: ', itemsAmount)
 	}
 
 	randomBreedsEmmition(data: boolean) {
-		this.filterService.randomBreeds.set(data)
+		this.filterService.setIsRandomBreeds(data)
 
 		console.log('RANDOM_BREEDS: ', data)
 	}

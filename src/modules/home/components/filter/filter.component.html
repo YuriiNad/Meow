@@ -1,10 +1,12 @@
 <div class="w-full">
+	
 	<app-filter-item-wrapper 
-		[quantity]="breeds().length"
+		*ngIf="breeds$ | async as breeds"
+		[quantity]="breeds.length"
 		title="Breed"
 	>
 		<app-breed 
-			[options]="breeds()"
+			[options]="breeds"
 			(onSelect)="breedEmmition($event)"
 		/>
 

@@ -1,4 +1,4 @@
-import { Inject, Injectable, signal } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { WINDOW } from '../global/tokens';
 
 export enum ScreenSize {
