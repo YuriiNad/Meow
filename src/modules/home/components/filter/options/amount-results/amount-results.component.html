@@ -1,6 +1,6 @@
 <mat-radio-group
 	(change)="onSelect.emit($event.value)"
-	[value]="initValue"
+	[formControl]="amountResults"
 	class="flex flex-col"
 	aria-label="Select an option"
 >

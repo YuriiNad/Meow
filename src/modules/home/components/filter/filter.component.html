@@ -5,12 +5,17 @@
 		[quantity]="breeds.length"
 		title="Breed"
 	>
-		<app-breed 
+		<app-breed
+			[initValue]="initBreed || breeds[0].value"
+			[disabled]="isDisabled$ | async"
 			[options]="breeds"
 			(onSelect)="breedEmmition($event)"
 		/>
 
-		<app-random-breeds (onSelect)="randomBreedsEmmition($event)"/>
+		<app-random-breeds 
+			(onSelect)="randomBreedsEmmition($event)"
+			[initValue]="isRandom"
+		/>
 
 	</app-filter-item-wrapper>
 
@@ -18,6 +23,7 @@
 		title="Show by"
 	>
 		<app-amount-results 
+			[initValue]="initAmount"
 			[options]="amountResultsOptions"
 			(onSelect)="amountEmmition($event)"
 		/>

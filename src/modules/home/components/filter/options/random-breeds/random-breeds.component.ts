@@ -13,5 +13,9 @@ export class RandomBreedsComponent {
 	@Input() styleClass: string = '';
 	@Output() onSelect = new EventEmitter<boolean>();
 
-	public randomBreeds = new FormControl<boolean>(true)
+	@Input() set initValue(val: boolean) {
+		this.randomBreeds.setValue(val);
+	}
+
+	public randomBreeds = new FormControl();
 }

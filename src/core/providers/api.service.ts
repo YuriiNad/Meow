@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams, HttpUrlEncodingCodec } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { EnvironmentService } from './environment.service';
 
+type TParams = { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean> }
 type HttpOptions = Parameters<HttpClient['request']>['2'];
 type RequestOptions = HttpOptions & { handleError?: boolean };
 
@@ -25,6 +26,15 @@ export class ApiService {
 			.pipe(
 				catchError(error => this.errorHandler(error, handleError)),
 			)
+	}
+
+	public setParamsFromObj(obj: TParams): HttpParams {
+		const params = new HttpParams({
+			fromObject: obj,
+			encoder: new HttpUrlEncodingCodec(),
+		})
+
+		return params;
 	}
 
 	private errorHandler(error: HttpErrorResponse, handleError: boolean = false): Observable<never> {

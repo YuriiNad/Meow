@@ -41,6 +41,19 @@ export interface IBreedInfo {
 	bidability?: number
 }
 
+export interface ICatInfo {
+	breeds: IBreedInfo[]
+	categories?: ICategory[]
+	id: string
+	url: string
+	width: number
+	height: number
+}
+export interface ICategory {
+	id: number
+	name: string
+}
+
 export interface ICatWeight {
 	imperial: string
 	metric: string

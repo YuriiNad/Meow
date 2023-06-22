@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { IBasicFilterItemOptions } from '../../filter.options';
 import { NgFor, NgIf } from '@angular/common';
 import { BasicFilter } from '../basic-filter';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'app-amount-results',
 	templateUrl: './amount-results.component.html',
 	standalone: true,
-	imports: [MatRadioModule, NgFor, NgIf],
+	imports: [MatRadioModule, NgFor, NgIf, ReactiveFormsModule],
 })
 export class AmountResultsComponent extends BasicFilter<IBasicFilterItemOptions<number>> {
-	public get initValue(): number { //TODO: initial value from local storage
-		return this.options[0].value;
+	@Input() set initValue(val: number) {
+		this.amountResults.setValue(val);
 	}
+
+	public amountResults = new FormControl();
 }
