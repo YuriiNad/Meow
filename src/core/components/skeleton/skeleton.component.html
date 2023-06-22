@@ -1,0 +1,14 @@
+<div class="{{styleClass}}">
+	<ng-container 
+		*ngFor="let item of counts; let i = index"
+	>
+		<ngx-skeleton-loader
+			
+			[theme]="{ 
+				'border-radius': '5px',
+				'height': heights[i],
+				'background-color': '#EFF1F6',
+				'border': '1px solid white'}"
+  	></ngx-skeleton-loader>
+	</ng-container>
+</div>

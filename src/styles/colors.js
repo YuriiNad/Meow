@@ -29,6 +29,9 @@ const colors = {
 	},
 	green: {
 		DEFAULT: '#00CC99'
+	},
+	skeleton: {
+		DEFAULT: '#EFF1F6'
 	}
 };
 module.exports = Object.assign({}, colors);

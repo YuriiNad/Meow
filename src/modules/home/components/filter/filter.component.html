@@ -1,7 +1,7 @@
 <div class="w-full">
 	
 	<app-filter-item-wrapper 
-		*ngIf="breeds$ | async as breeds"
+		*ngIf="breeds$ | async as breeds; else breedSkeleton"
 		[quantity]="breeds.length"
 		title="Breed"
 	>
@@ -9,23 +9,33 @@
 			[initValue]="initBreed || breeds[0].value"
 			[disabled]="isRandom"
 			[options]="breeds"
-			(onSelect)="breedEmmition($event)"
+			(onSelect)="setBreed($event)"
 		/>
 
 		<app-random-breeds 
-			(onSelect)="randomBreedsEmmition($event)"
+			(onSelect)="setIsRandomBreeds($event)"
 			[initValue]="isRandom"
 		/>
 
 	</app-filter-item-wrapper>
 
-	<app-filter-item-wrapper 
+	<app-filter-item-wrapper
+		*ngIf="!filterLoading; else showBySkeleton"
 		title="Show by"
 	>
 		<app-amount-results 
 			[initValue]="initAmount"
 			[options]="amountResultsOptions"
-			(onSelect)="amountEmmition($event)"
+			(onSelect)="setAmountResults($event)"
 		/>
 	</app-filter-item-wrapper>
+	
 </div>
+
+<ng-template #breedSkeleton>
+	<app-skeleton [count]="3" [height]="['50px','50px', '50px']"/>
+</ng-template>
+
+<ng-template #showBySkeleton>
+	<app-skeleton [count]="2" [height]="['55px','136px']"/>
+</ng-template>
