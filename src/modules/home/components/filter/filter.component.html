@@ -7,7 +7,7 @@
 	>
 		<app-breed
 			[initValue]="initBreed || breeds[0].value"
-			[disabled]="isDisabled$ | async"
+			[disabled]="isRandom"
 			[options]="breeds"
 			(onSelect)="breedEmmition($event)"
 		/>
