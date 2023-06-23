@@ -30,12 +30,11 @@ export class MainComponent {
 
 	@ViewChild('nav') sideNav!: MatSidenav;
 
-	// TODO: Convert to stream
-	public readonly isMobile = signal<boolean>(this.screen.mobile);
-	public readonly mode = signal<MatDrawerMode>(this.isMobile() ? 'over' : 'side');
+	public readonly isMobile = this.screen.mobile;
+	public readonly mode = this.screen.mobile ? 'over' : 'side';
 
 	public closeMenuOnSmallerScreens(): void {
-		if (this.isMobile() && this.sideNav) {
+		if (this.isMobile && this.sideNav) {
 			this.sideNav.close();
 		}
 	}

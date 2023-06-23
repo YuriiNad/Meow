@@ -2,7 +2,7 @@
 <div class="h-screen flex flex-col">
 	<app-toolbar 
 		(onOpen)="nav.toggle()"
-		[showMenu]="isMobile()" 
+		[showMenu]="isMobile" 
 		title="Meow"
 	/>
 
@@ -12,11 +12,11 @@
 			#nav
 			class="w-[250px]"
 			role="navigation"
-			[opened]="!isMobile()"
-			[disableClose]="!isMobile()"
-			[mode]="mode()"
+			[opened]="!isMobile"
+			[disableClose]="!isMobile"
+			[mode]="mode"
 		>
-			<app-filter/>
+			<app-filter (onAction)="closeMenuOnSmallerScreens()"/>
   	</mat-sidenav>
 
   	<mat-sidenav-content class="p-2 overflow-x-hidden">

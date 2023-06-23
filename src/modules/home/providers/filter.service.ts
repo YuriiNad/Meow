@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { StorageService } from 'src/core/providers/storage.service';
 
 export enum EFilterKeys {
@@ -13,10 +13,11 @@ export enum EFilterKeys {
 })
 export class FilterService {
 	private readonly storageService = inject(StorageService);
+	private readonly storage = inject(StorageService);
 
-	private amountResultsSubject = new BehaviorSubject<number>(10);
-	private breedSubject = new BehaviorSubject<string>('');
-	private isRandomBreedsSubject = new BehaviorSubject<boolean>(true);
+	private amountResultsSubject = new BehaviorSubject<number>(this.storage.get(EFilterKeys.RESULT_AMOUNT) || 10);
+	private breedSubject = new BehaviorSubject<string>(this.storage.get(EFilterKeys.BREED) || 'aege');
+	private isRandomBreedsSubject = new BehaviorSubject<boolean>(this.storage.get(EFilterKeys.IS_RANDOM) as boolean || true);
 
 	public amountResults$ = this.amountResultsSubject.asObservable();
 	public breed$ = this.breedSubject.asObservable();
@@ -24,16 +25,31 @@ export class FilterService {
 
 	public setAmountResults(val: number): void {
 		this.amountResultsSubject.next(val);
-		this.storageService.set(EFilterKeys.RESULT_AMOUNT, val);
+		this.trackFilterOptionsChange();
 	}
 
 	public setBreed(val: string): void {
 		this.breedSubject.next(val);
-		this.storageService.set(EFilterKeys.BREED, val);
+		this.trackFilterOptionsChange();
 	}
 
 	public setIsRandomBreeds(val: boolean): void {
 		this.isRandomBreedsSubject.next(val);
-		this.storageService.set(EFilterKeys.IS_RANDOM, val);
+		this.trackFilterOptionsChange();
+
+	}
+
+	public trackFilterOptionsChange(): void {
+		const FILTER_OPTIONS: { [key: string]: boolean | string | number } = {
+			'IS_RANDOM': this.isRandomBreedsSubject.value,
+			'RESULT_AMOUNT': this.amountResultsSubject.value,
+			'CAT_BREED': this.breedSubject.value,
+		};
+
+		const keys: string[] = Object.keys(FILTER_OPTIONS);
+
+		keys.forEach((key: string) => {
+			this.storageService.set(key, FILTER_OPTIONS[key])
+		})
 	}
 }

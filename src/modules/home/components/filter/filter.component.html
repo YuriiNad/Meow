@@ -6,15 +6,15 @@
 		title="Breed"
 	>
 		<app-breed
-			[initValue]="initBreed || breeds[0].value"
-			[disabled]="isRandom"
+			[initValue]="initBreed$ | async "
+			[disabled]="isRandom$ | async"
 			[options]="breeds"
 			(onSelect)="setBreed($event)"
 		/>
 
 		<app-random-breeds 
 			(onSelect)="setIsRandomBreeds($event)"
-			[initValue]="isRandom"
+			[initValue]="(isRandom$ | async) ?? true"
 		/>
 
 	</app-filter-item-wrapper>
@@ -24,7 +24,7 @@
 		title="Show by"
 	>
 		<app-amount-results 
-			[initValue]="initAmount"
+			[initValue]="(initAmount$ | async) ?? 10"
 			[options]="amountResultsOptions"
 			(onSelect)="setAmountResults($event)"
 		/>

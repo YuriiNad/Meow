@@ -13,19 +13,6 @@ import { StorageService } from 'src/core/providers/storage.service';
 export class CatService {
 	private readonly api = inject(ApiService);
 	private readonly filter = inject(FilterService);
-	private readonly storage = inject(StorageService);
-
-	public get initBreed(): string {
-		return this.storage.get(EFilterKeys.BREED) as string;
-	}
-
-	public get isRandom(): boolean {
-		return this.storage.get(EFilterKeys.IS_RANDOM) as boolean;
-	}
-
-	public get initAmount(): number {
-		return this.storage.get(EFilterKeys.RESULT_AMOUNT) || 10;
-	}
 
 	public getAllBreeds(): Observable<IBasicFilterItemOptions<string>[]> {
 		return this.api.get<IBreedInfo[]>('/breeds').pipe(

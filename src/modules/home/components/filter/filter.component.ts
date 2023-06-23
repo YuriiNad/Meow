@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CatService } from 'src/modules/home/providers/cat.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { BreedComponent } from './options/breed/breed.component';
@@ -10,7 +10,7 @@ import { FilterService } from '../../providers/filter.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { RandomBreedsComponent } from './options/random-breeds/random-breeds.component';
 import { SkeletonComponent } from 'src/core/components/skeleton/skeleton.component';
-import { EMPTY, catchError, finalize } from 'rxjs';
+import { Observable, catchError, finalize } from 'rxjs';
 
 
 @Component({
@@ -30,6 +30,8 @@ import { EMPTY, catchError, finalize } from 'rxjs';
 	standalone: true,
 })
 export class FilterComponent {
+	@Output() onAction = new EventEmitter<void>()
+
 	private readonly filterService = inject(FilterService);
 	private readonly catService = inject(CatService);
 
@@ -46,32 +48,32 @@ export class FilterComponent {
 
 	public filterLoading: boolean = true;
 
-	public get initBreed(): string {
-		return this.catService.initBreed || '';
+	public get initBreed$(): Observable<string> {
+		return this.filterService.breed$;
 	}
 
-	public get isRandom(): boolean {
-		return this.catService.isRandom;
+	public get isRandom$(): Observable<boolean> {
+		return this.filterService.isRandomBreeds$;
 	}
 
-	public get initAmount(): number {
-		return this.catService.initAmount;
+	public get initAmount$(): Observable<number> {
+		return this.filterService.amountResults$;
 	}
 
 	setBreed(breedId: string) {
 		this.filterService.setBreed(breedId);
-		console.log('BREED: ', breedId)
+		this.onAction.emit();
 	}
 
 	setAmountResults(itemsAmount: number | string) {
 		if (typeof itemsAmount === 'number') {
 			this.filterService.setAmountResults(itemsAmount);
 		}
-		console.log('AMOUNT: ', itemsAmount)
+		this.onAction.emit();
 	}
 
 	setIsRandomBreeds(data: boolean) {
-		this.filterService.setIsRandomBreeds(data)
-		console.log('RANDOM_BREEDS: ', data)
+		this.filterService.setIsRandomBreeds(data);
+		this.onAction.emit();
 	}
 }
