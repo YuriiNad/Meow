@@ -11,7 +11,6 @@ import { getColumns } from 'src/core/helpers/grid.helper';
 
 @Component({
 	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss'],
 	imports: [CatCardComponent, NgIf, NgFor, MatGridListModule, ReactiveFormsModule, AsyncPipe, JsonPipe, MatFormFieldModule, MatSelectModule],
 	standalone: true,
 })

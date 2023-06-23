@@ -1,12 +1,19 @@
 
-<mat-grid-list  [cols]="cols" gutterSize="5" rowHeight="1:1">
 
-	<ng-container *ngIf="cats$ | async as cats">
-		<mat-grid-tile
-			*ngFor="let cat of cats"
-		>
-			<app-cat-card [imgUrl]="cat.url"/>
-		</mat-grid-tile>
-	</ng-container>
+<ng-container *ngIf="cats$ | async as cats; else loading">
+	<mat-grid-list  [cols]="cols" gutterSize="5" rowHeight="1:1">
+		<ng-container >
+			<mat-grid-tile
+				*ngFor="let cat of cats"
+			>
+				<app-cat-card [imgUrl]="cat.url"/>
+			</mat-grid-tile>
+		</ng-container>
+	</mat-grid-list>
+</ng-container>
 
-</mat-grid-list>
+<ng-template #loading>
+	<div class="w-full h-full flex items-center justify-center">
+		<span class="loader"></span>
+	</div>
+</ng-template>
