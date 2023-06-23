@@ -24,5 +24,5 @@ export default class HomeComponent {
 	}
 
 	public readonly cols = getColumns();
-	public cats$ = this.catService.getImages().pipe(tap(console.log));
+	public cats$ = this.catService.getImages();
 }

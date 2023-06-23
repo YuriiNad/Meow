@@ -25,9 +25,6 @@ export class CatService {
 		const params = this.api.setParamsFromObj({ limit });
 
 		return this.api.get<any[]>('/images/search', { params: params })
-			.pipe(
-				tap(e => console.log('RANDOM: ', e))
-			)
 	}
 
 	private getSpecificImages(limit: number, breed: string): Observable<ICatInfo[]> {
@@ -37,9 +34,6 @@ export class CatService {
 		});
 
 		return this.api.get<any[]>('/images/search', { params: params })
-			.pipe(
-				tap(e => console.log('SPECIFIC: ', e))
-			)
 	}
 
 	public getImages(): Observable<ICatInfo[]> {
@@ -48,7 +42,6 @@ export class CatService {
 			this.filter.isRandomBreeds$,
 			this.filter.breed$,
 		]).pipe(
-			tap(([limit, isRandom, breed]) => console.log([limit, isRandom, breed])),
 			switchMap(([limit, isRandom, breed]) => {
 				if (isRandom) {
 					return this.getRandomImages(limit);
