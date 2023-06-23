@@ -1,9 +1,11 @@
 
 <mat-grid-list  [cols]="cols" gutterSize="5" rowHeight="1:1">
 
-	<ng-container *ngFor="let item of cats">
-		<mat-grid-tile>
-			<app-cat-card [imgUrl]="item.url"/>
+	<ng-container *ngIf="cats$ | async as cats">
+		<mat-grid-tile
+			*ngFor="let cat of cats"
+		>
+			<app-cat-card [imgUrl]="cat.url"/>
 		</mat-grid-tile>
 	</ng-container>
 
