@@ -5,7 +5,8 @@ import { AsyncPipe, JsonPipe, NgIf, NgFor } from '@angular/common';
 import { FilterService } from './providers/filter.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+// TODO: First emition fixing
 
 @Component({
 	templateUrl: './home.component.html',
@@ -18,6 +19,6 @@ export default class HomeComponent implements OnInit {
 	private readonly filter = inject(FilterService);
 
 	ngOnInit(): void {
-		// this.catService.getImages().subscribe();
+		this.catService.getImages().subscribe();
 	}
 }

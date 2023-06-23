@@ -44,9 +44,8 @@ export class CatService {
 	}
 
 	private getSpecificImages(limit: number, breed: string): Observable<ICatInfo[]> {
-		console.log(breed)
 		const params = this.api.setParamsFromObj({
-			breed_ids: 'beng',
+			breed_ids: breed,
 			limit
 		});
 
@@ -62,6 +61,7 @@ export class CatService {
 			this.filter.isRandomBreeds$,
 			this.filter.breed$,
 		]).pipe(
+			tap(([limit, isRandom, breed]) => console.log([limit, isRandom, breed])),
 			switchMap(([limit, isRandom, breed]) => {
 				if (isRandom) {
 					return this.getRandomImages(limit);
